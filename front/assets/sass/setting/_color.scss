@@ -1,0 +1,121 @@
+@import "../ini/function";
+
+/*
+  .color__txt__xxx
+  .color__bg__xxx
+*/
+
+$color-black:#333;
+$color-white:#fff;
+$color-gray1:#888;
+$color-gray2:#ccc;
+$color-gray3:#ddd;
+$color-pri:#233142;
+$color-sec:#4F9DA6;
+$color-ter:#FACF5A;
+$color-qua:#FF5959;
+$color-qui:#FFFFFF;
+$color-sen:#FFFFFF;
+$color-sep:#FFFFFF;
+$color-oct:#FFFFFF;
+$color-non:#FFFFFF;
+$color-den:#FFFFFF;
+
+@mixin color{
+  color:$color-black;
+  background-color:$color-white;
+  .color__txt{
+    &__white{
+      color:$color-white;
+    }
+    &__black{
+      color:$color-black;
+    }
+    &__gray1{
+      color:$color-gray1;
+    }
+    &__gray2{
+      color:$color-gray2;
+    }
+    &__gray3{
+      color:$color-gray3;
+    }
+    &__pri{
+      color:$color-pri;
+    }
+    &__sec{
+      color:$color-sec;
+    }
+    &__ter{
+      color:$color-ter;
+    }
+    &__qua{
+      color:$color-qua;
+    }
+    &__qui{
+      color:$color-qui;
+    }
+    &__sen{
+      color:$color-sen;
+    }
+    &__sep{
+      color:$color-sep;
+    }
+    &__oct{
+      color:$color-oct;
+    }
+    &__non{
+      color:$color-non;
+    }
+    &__den{
+      color:$color-den;
+    }
+  }
+  .color__bg{
+    &__white{
+      background-color:$color-white;
+    }
+    &__black{
+      background-color:$color-black;
+    }
+    &__gray1{
+      background-color:$color-gray1;
+    }
+    &__gray2{
+      background-color:$color-gray2;
+    }
+    &__gray3{
+      background-color:$color-gray3;
+    }
+    &__pri{
+      background-color:$color-pri;
+    }
+    &__sec{
+      background-color:$color-sec;
+    }
+    &__ter{
+      background-color:$color-ter;
+    }
+    &__qua{
+      background-color:$color-qua;
+    }
+    &__qui{
+      background-color:$color-qui;
+    }
+    &__sen{
+      background-color:$color-sen;
+    }
+    &__sep{
+      background-color:$color-sep;
+    }
+    &__oct{
+      background-color:$color-oct;
+    }
+    &__non{
+      background-color:$color-non;
+    }
+    &__den{
+      background-color:$color-den;
+    }
+  }
+}

@@ -1,0 +1,63 @@
+@use "sass:math";
+
+//set var
+$max-width:1180;
+$min-width:960;
+$breakpoint:750;
+$font-sans:"游ゴシック","メイリオ",Meiryo,-apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", "Helvetica Neue", HelveticaNeue, YuGothic, "Yu Gothic Medium", "Yu Gothic", Verdana,sans-serif;
+$font-serif:"游明朝",Hiragino Mincho ProN, "HGS明朝E", "メイリオ", Meiryo, serif;
+
+//mixin add
+
+//mediaquery
+@mixin sp {
+    @media (max-width: px($breakpoint)) {
+        @content;
+    }
+}
+@mixin pc {
+    @media (min-width: px($breakpoint + 1)) {
+        @content;
+    }
+}
+
+//function
+
+//px変換
+@function px($a){
+    @return $a * 1px;
+}
+
+//%計算
+@function per($a, $b){
+    @return math.div($a, $b) * 100 * 1%;
+}
+//line-height計算（行送り,フォントサイズ）
+@function lh($a, $b){
+    @return math.div($a, $b);
+}
+//letter-spacing計算（トラッキング）
+@function ls($a){
+    @return math.div($a, 1000) * 1em;
+}
+
+//images
+@mixin images{
+    font-size:0;
+    line-height:0;
+}
+
+//reset
+@mixin reset{
+    *{margin:0;padding:0;text-align:left;}
+    hr{display:none;line-height:0;font-size:0;padding:0;margin:0;border:none;}
+    a{color:inherit;text-decoration:none;}
+    ul,ol{list-style:none;}
+    address{font-style:normal;}
+    img{border:none;width:auto;max-width:100%;font-size:0;line-height:0;}
+    table,tbody,tr,th,td{padding:0;margin:0;border:none;border-collapse:collapse;}
+    html,body{width:100%;height:auto;}
+    html{font-size:62.5%; -moz-osx-font-smoothing: grayscale;-webkit-font-smoothing: antialiased;text-rendering: optimizeLegibility;}
+    small{font-size:100%;}
+    b,strong{font-weight:normal}
+  }

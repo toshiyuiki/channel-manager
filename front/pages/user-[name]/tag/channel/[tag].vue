@@ -1,0 +1,256 @@
+<template>
+    <div>
+        <the-header />
+        <section class="sec__hero">
+            <div class="bg">
+                <div class="sec__in__l">
+                    <h1 class="fs__txt__40 color__txt__white">{{route.params.tag}}</h1>
+                </div>
+            </div>
+        </section>
+        <section class="sec__channel__list">
+            <div class="sec__in__l">
+                <h2>チャンネル一覧</h2>
+                <ul class="channel dp__flex">
+                    <li
+                        v-for="(data, index) in get_user_channel"
+                    >
+                        <dl>
+                            <dt class="fs__txt__14">
+                                <a :href="'https://www.youtube.com/channel/' + data.channel_id" target="_blank">{{ data.channel_name }}</a>
+                            </dt>
+                            <dd>
+                                <a :href="'https://www.youtube.com/channel/' + data.channel_id" target="_blank">
+                                    <figure class="img__reset"><img :src="data.channel_thumb"></figure>
+                                </a>
+                                <ul class="tag fs__txt__14 dp__flex">
+                                    <li>
+                                        <NuxtLink :to="'/user-'+ route.params.name +'/tag/channel/' + data.channel_tag">
+                                            {{ data.channel_tag }}
+                                        </NuxtLink>
+                                    </li>
+                                </ul>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <the-footer />
+    </div>
+</template>
+<script lang="ts" setup>
+    const route = useRoute();
+    const { login_boo_link } = useAuth();
+    login_boo_link();
+    const { getDb } = useDb();
+
+    const get_channel = await getDb('channel');
+
+    const get_user_channel = await user_channel();
+    function user_channel () {
+        let db = null;
+        db = get_channel.value.filter(val => {
+            return val.user_name === route.params.name
+        });
+        db = db.filter(val => {
+            return val.channel_tag === route.params.tag
+        });
+        return db;
+    }
+</script>
+<style lang="scss">
+    .sec__channel__add{
+        padding:60px 0;
+        .ch{
+            padding:0 0 30px;
+            dt{
+                text-align:center;
+            }
+            dd input{
+                width:100%;
+                font-size:4.0rem;
+                box-sizing: border-box;
+                padding:10px;
+                display:block;
+            }
+            dd label{
+                display:block;
+                position:relative;
+                padding:2rem 0 0;
+            }
+            dd span{
+                position:absolute;
+                display:block;
+                top:25px;
+                left:10px;
+                font-size:1.8rem;
+                transition: font-size .3s ease 0s, top .3s ease 0s, opacity .3s ease 0s;
+            }
+            dd:has(input:placeholder-shown) span{
+                top:15px;
+                font-size:4.0rem;
+                opacity:0.2;
+            }
+            dd:has(input:focus) span,
+            dd:has(input:not(:placeholder-shown)) span{
+                top:0;
+                font-size:1.2rem;
+                opacity:1;
+            }
+        }
+        .tag{
+            dt{
+                text-align:right;
+            }
+            dd ul{
+                justify-content: flex-end;
+            }
+            dd input{
+                width:100%;
+                max-width:300px;
+                font-size:1.8rem;
+                box-sizing: border-box;
+                padding:10px;
+                display:block;
+            }
+        }
+        button{
+            background:$color-pri;
+            color:$color-white;
+            border:none;
+            width:per(400, 1180);
+            margin:0 auto;
+            font-size:4.0rem;
+            border:1px solid $color-white;
+            text-align:center;
+            padding:10px;
+            margin:0 auto;
+            display:block;
+            cursor: pointer;
+        }
+        @include sp{
+            padding:40px per(10, 375);
+            .ch{
+                padding:0 0 30px;
+                dt{
+                    margin:0 0 10px;
+                }
+                dd{
+                    overflow: hidden;
+                }
+                dd input{
+                    font-size:2.0rem;
+                }
+                dd label{
+                    padding:3rem 0 0;
+                }
+                dd span{
+                    top:35px;
+                    font-size:2.0rem;
+                }
+                dd:has(input:placeholder-shown) span{
+                    top:35px;
+                    font-size:2.0rem;
+                }
+                dd:has(input:focus) span,
+                dd:has(input:not(:placeholder-shown)) span{
+                    top:0;
+                    font-size:1.2rem;
+                    opacity:1;
+                }
+            }
+            .tag{
+                padding:0 0 40px;
+                dt{
+                    text-align:center;
+                }
+                dd ul{
+                    display:block;
+                }
+                dd input{
+                    width:80%;
+                    max-width:100%;
+                    font-size:1.6rem;
+                    margin:0 auto;
+                }
+            }
+            button{
+                border:none;
+                width:90%;
+                font-size:3.0rem;
+            }
+        }
+    }
+    .sec__channel__list{
+        padding:60px 0;
+        h2{
+            margin:0 0 20px;
+        }
+        .channel{
+            gap:10px;
+            flex-wrap: wrap;
+        }
+        .channel > li{
+            width:calc(per(1,5) - 10px);
+            background:rgba($color-sec,0.2);
+            box-sizing: border-box;
+            padding:10px;
+        }
+        .channel > li figure{
+            border-radius: 100%;
+            overflow: hidden;
+        }
+        .channel > li dt{
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            -webkit-line-clamp: 1;
+            margin:0 0 10px;
+        }
+        .channel .tag{
+            padding:10px 0 0;
+        }
+        .channel .tag li{
+            background:$color-white;
+            padding:2px 5px;
+            border-radius: 2px;
+        }
+        .channel .tagedit{
+            padding:10px 0;
+        }
+        .channel .tagedit div.dp__flex{
+            gap:0 5px;
+        }
+        .channel .tagedit div.dp__flex input{
+            width:100%;
+            box-sizing: border-box;
+            padding:5px;
+        }
+        .channel .tagedit div.dp__flex button{
+            width:100%;
+            flex-basis: 4em;
+            text-align:center;
+            box-sizing: border-box;
+            padding:5px;
+            background:rgba($color-pri,0.8);
+            color:$color-white;
+            border:none;
+        }
+        .channel .delete button{
+            display:block;
+            width:100%;
+            text-align:center;
+            background:$color-qua;
+            border:none;
+            padding:5px;
+
+        }
+        @include sp{
+            padding:40px per(10, 375);
+            .channel > li{
+                width:calc(per(1,3) - 7px);
+            }
+        }
+    }
+</style>

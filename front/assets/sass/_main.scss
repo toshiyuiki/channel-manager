@@ -1,0 +1,42 @@
+@import "ini/function";
+@import "setting/setting_pak";
+@include reset;
+body{
+  @include ff;
+  @include fw;
+  @include fs;
+  @include dp;
+  @include color;
+  @include anime;
+  width:100%;
+  .img__reset{
+    font-size:0;
+    line-height:0;
+  }
+}
+img {
+  width:100%;
+  image-rendering: -webkit-optimize-contrast;
+}
+.sec__in__l{
+  width:100%;
+  max-width:px($max-width);
+  min-width:0;
+  margin:0 auto;
+}
+.sec__in__s{
+  width:100%;
+  max-width:px($min-width);
+  min-width:0;
+  margin:0 auto;
+}
+@include sp{
+  .sec__in__l{
+    width:100%;
+    max-width:100%;
+  }
+  .sec__in__s{
+    width:100%;
+    max-width:100%;
+  }
+}
