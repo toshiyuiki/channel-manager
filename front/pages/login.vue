@@ -171,6 +171,7 @@ const userpass = ref(null);
 const logincomment = ref("");
 async function user_login() {
     const get_user = await getDb('user');
+    let comment = '';
     if(get_user.value){
         get_user.value.forEach((val:string) => {
             console.log(val.user_name,username.value,val.user_pass,userpass.value)
@@ -180,12 +181,14 @@ async function user_login() {
                 cookie_user.value = username.value;
                 navigateTo('/user-' + cookie_user.value);
             }else{
-                logincomment.value = "ログイン失敗";
+                comment = "ログイン失敗";
             }
         });
     }else{
         logincomment.value = "入力内容を確認してください"
     }
+    logincomment.value = comment;
+    return logincomment.value;
 }
 
 const signname = ref(null);

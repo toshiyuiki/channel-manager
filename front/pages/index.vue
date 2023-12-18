@@ -150,6 +150,7 @@
 const login = ref(false);
 const { login_boo } = useAuth();
 login.value = login_boo();
+const cookie_user = useCookie('user');
 onMounted(() => {
     useScrollEvent().ScrollEvent()
 })
