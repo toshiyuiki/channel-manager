@@ -6,36 +6,44 @@
 *YoutubeのAPIキーが必要になります。  
 
 ## about  
-ログインからアカウントを作成してログイン。
+ログインからアカウントを作成してログイン。  
 チャンネル一覧からYoutubeチャンネルのURLを入力するとチャンネル情報と動画を取得します。
 
 ## 手順
 
 ### DB設定  
 /.envを作成してDB情報を入力します。  
+
     DB_HOST=db
     DB_NAME=db_name
     DB_USER=db_user
     DB_PASS=db_pass
 
 ### コンテナ起動→Prismaのinit
+
     docker-compose up -d
     cd front
     npm i
     npx prisma init
 
 #### nuxtのenv設定
-/front/.env  
+
+    /front/.env  
+
 prisma init時に自動で生成されてます。  
 コンテナのDBへの接続設定を入力。APIKEYも入れます。  
+
     DATABASE_URL="postgresql://db_user:db_pass@localhost:5432/db_name?schema=public"
     NUXT_API_KEY="APIKEY"
 
 
 #### prismaスキーマの設定
-/front/prisma/schema.prisma  
+
+    /front/prisma/schema.prisma  
+
 prisma init時に自動で生成されてます。 
 以下をもろもろを入力。  
+
     generator client {
         provider = "prisma-client-js"
     }
