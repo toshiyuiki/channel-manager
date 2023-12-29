@@ -85,8 +85,8 @@ prisma init時に自動で生成されてます。
         updated_at DateTime? @updatedAt
     }
 
-#### マイグレーション  
-    npx prisma migrate dev
+#### db push  
+    npx prisma db push
 
 #### nuxt3を起動
     npm run dev
