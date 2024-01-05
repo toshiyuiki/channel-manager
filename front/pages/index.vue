@@ -125,7 +125,7 @@
                             <dd>
                                 <p class="color__bg__ter"><NuxtLink to="#">ログイン</NuxtLink></p>
                                 <ul class="fs__txt__12 caution">
-                                    <li>※登録しないでください</li>
+                                    <li>※個人情報は登録しないでください</li>
                                 </ul>
                             </dd>
                         </dl>
